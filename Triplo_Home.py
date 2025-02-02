@@ -1,18 +1,22 @@
 import streamlit as st
 import lorem
 
-st.set_page_config(
+'''st.set_page_config(
     page_title="Triplo",
     layout="wide",
     initial_sidebar_state="collapsed",
-)
+)'''
 
-'''def project_page():
+def home_page():
+    st.write("# Welcome to Triplo! 👋")
+    st.write(lorem.paragraph())
+
+
+def project_page():
     st.write("Project Page")
-    st.write(st.session_state.project)'''
+    st.write(st.session_state.project)
 
-st.write("# Welcome to Triplo! 👋")
-st.write(lorem.paragraph())
+
 
 st.sidebar.button("Manage Account",)
 st.sidebar.button("Prefrences")
@@ -24,7 +28,7 @@ c1 = st.container(border=True)
 c1.header("Project List")
 
 for project in st.session_state.project_list:
-    expander = c1.expander(project)
+    expander = c1.expander(project, expanded=False)
     expander.write(lorem.sentence())
     expander.button("Open Project", key=project)
 
