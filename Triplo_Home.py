@@ -1,6 +1,13 @@
 import streamlit as st
 import lorem
 
+# Set the page configuration
+st.set_page_config(
+    page_title="Triplo",
+    layout="wide",
+    initial_sidebar_state="collapsed",
+)
+
 # Define the pages
 # Home page, where the user can see a list of projects and create a new project
 def home_page():
