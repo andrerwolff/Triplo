@@ -55,6 +55,6 @@ def project_page(project):
                     st.rerun()
 
     # Button to navigate back to the home page
-    if st.button("Return Home :house:", key="homex"):
+    if st.button("Return Home",icon=":material/home:", key="homex"):
         st.session_state.page = "home"
         st.rerun()

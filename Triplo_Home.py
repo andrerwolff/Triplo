@@ -11,7 +11,7 @@ st.set_page_config(
     page_title="Triplo",
     page_icon=":material/animation:",
     layout="wide",
-    initial_sidebar_state="collapsed",
+    initial_sidebar_state="auto",
 )
 
 # Initialize the session states
