@@ -1,0 +1,182 @@
+SECTION 33 05 05
+
+BURIED PIPING (Gravity service)
+
+# GENERAL
+## summary
+### The work to be performed in accordance with this Specification consists of furnishing all materials, equipment, supplies, and accessories and of performing all operations required in connection with the fabrication and installation of a buried piping for gravity service as shown on the Drawings and specified herein.
+### Buried piping for gravity service includes:
+#### PVC pipe,
+#### DI Pipe,
+#### Associated fittings, and
+#### Related appurtenances.
+### All materials shall be new and the best available. All material used shall be manufactured and supplied according to the latest revised standards of the American Water Works Association, the American National Standards Institute, and the American Society for Testing and Materials, or as mentioned hereinafter. 
+## Price and payment Procedures
+### Measurement and Payment
+#### Gravity Main
+##### Payment shall be based on linear feet of installed buried gravity pipe for each pipe size, regardless of pipe material.
+##### Distance shall be measured by linear foot from center of manhole to center of manhole or interior wall of wet well, as applicable.
+##### Unit price for buried gravity pipe shall include bypass pumping, plugging, cleaning, interim televising not included in pre-and post-televising item, excavation, pipe, bedding, backfill, compaction, surface restoration, and all other materials, labor, equipment, tools, and supplies necessary to complete the installation of buried gravity pipe.
+## REFERENCES
+### Standards
+#### The publications listed below form a part of this specification to the extent referenced. The publications are referred to in the text by the basic designation only.
+#### American Society for Testing and Materials (ASTM)
+##### D1784 (2020) – Standard Classification System and Basis for Specification for Rigid Poly(Vinyl Chloride) (PVC) Compounds and Chlorinated Poly(Vinyl Chloride) (CPVC) Compounds
+##### D2321 (2020) – Standard Practice for Underground Installation of Thermoplastic Pipe for Sewers and Other Gravity-Flow Applications
+##### D3034 (2016) – Standard Specification for Type PSM Poly(Vinyl Chloride) (PVC) Sewer Pipe and Fittings
+##### D3139 (2019) – Standard Specification for Joints for Plastic Pressure Pipes using Flexible Elastomeric Seals
+##### D3212 (2021) – Standard Specification for Joints for Drain and Sewer Plastic Pipes Using Flexible Elastomeric Seals
+##### F477 (2021) – Standard Specification for Elastometric Seals (Gaskets) for Joining Plastic Pipe
+##### F1417 (2019) – Standard Practice for Installation Acceptance of Plastic Non-pressure Sewer Lines Using Low-Pressure Air
+##### F1688 (2022) – Standard Guide for Construction Procedures for Buried Plastic Pipe
+#### City of Morganton
+##### Construction Specifications for Sewer Lines
+#### Uni-bell PVC Pipe Association
+##### Design and Installation Guide for PVC Fittings and Laterals for Solid Wall PVC Sewer Pipe
+##### Handbook of PVC Pipe Design and Construction (Fifth Edition)
+## Administrative Requirements
+### Coordination
+#### The existing system must at all times remain under the control of the Owner. The Contractor shall operate no valves or hydrants on the system without permission of the Owner.
+#### Service Interruptions, Shut Downs, and Continuity of Service
+##### Take precautions as necessary to minimize interruption of all utility services and will be responsible for restoration of service.
+##### Service shall not be disrupted for more than a four-hour period. If a longer shutdown period will be necessary, provide a temporary service to the customer, subject to the review and approval of the Engineer.
+##### Coordinate service interruptions with the Owner and affected parties.
+##### No interruption of service shall be permitted without prior approval.
+##### Provide at least two (2) days’ notice and make appropriate arrangements with the Owner and affected parties prior to shut down. Notice shall include when supply will be discontinued, when it will be resumed, and contact information.
+##### Schedule shutdowns for periods of minimum use and at the Owner’s and affected parties’ convenience.
+##### Have all material, equipment, and personnel on hand prior to beginning any work involving a potential shutdown.
+##### Perform work in a manner that reduces the shutdown time to the minimum.
+##### In some cases, an increased number of personnel or night or weekend work may be necessary.
+#### Submit a proposed plan for review and coordination.
+### Sequencing
+#### Cut Ins and Connecting to Existing System
+##### All points at which the existing piping systems are to be disconnected and connected to the new pipelines are shown on the Drawings.
+##### Connections to the existing system shall be completed after new pipeline, valves, thrust blocks and other appurtenances are installed and tested.
+##### Connections shall be done in accordance with the details given for each point of disconnection or reconnections.
+##### At each point of connecting new pipes to existing pipes, expose the existing pipe and locate a good sound point at which to cut the existing pipe off square. Then provide and install the approved transition coupling or sleeve suitable for connecting the two types of pipe. If both pipes are DIPS compatible, a mechanical joint solid sleeve with mechanical restraints is preferred in lieu of a coupling, unless indicated otherwise.
+##### Submit a proposed plan for review and coordination. 
+## Submittals
+### Submit the following:
+#### Affidavit of compliance with ASTM and other referenced standards. 
+#### Manufacturer’s installation instructions and recommendations.
+#### Manufacturer’s literature and product data sufficient to demonstrate compliance with the specified requirements. Highlight proposed products and features, cross out extraneous information.
+#### Pressure, Leakage, Disinfection, and other test results.
+#### Contractor’s plan for connecting to service interruptions and connections to the existing system.
+## PRODUCT HANDLING
+### Pipe, fittings, and all other accessories shall be loaded and unloaded by lifting with hoists or skidding to avoid shock or damage to them. Under no circumstances shall any materials be dropped. Pipe handled on skidways shall not be skidded or rolled against pipe already on the ground. Skidding which damages protective coatings will not be permitted.
+### In distributing the material at the site of the work, each piece shall be unloaded opposite or near the place where it is to be laid in the trench to prevent moving more than once.
+### All pipe and fittings shall be so handled that the coating and lining will not be damaged. If, however, any part of the coating or lining is damaged, the repair shall be by the Contractor at their expense in a manner satisfactory to the Engineer. Any area damage beyond repair must be cut off and discarded.
+### Do not store materials directly on the ground. Use opaque covers to protect PVC materials from direct sunlight (UV light).
+### All pipe will be field inspected at the job site and checked for conformance to these specifications. Pipe and fittings will be checked for out‑of‑round or damaged joints, interior and exterior surface damage, gasket damage and the other require­ments listed herein. Any pipeline or appurtenant material found defective will be rejected. Any material rejected at the job site shall be marked “Rejected,” and the Contractor shall remove it immediately from the job site.
+## Site Conditions
+### Other Utilities and Potholing
+#### The type, size, location, and number of known underground facilities have been shown on the Drawings based on information available to the Engineer at the time of design; however, no guarantee is made as to the true type, size, location, or number of such facilities, or that all facilities are shown. It shall be the sole responsibility of the Contractor to verify the existence and location of all underground utilities along the route of the work. The omission from, or the inclusion of, utility locations on the Drawings is not to be considered as the nonexistence of, or a definite location of, existing underground utilities.
+#### If existing utilities were potholed during design, that information is shown or identified as such on the Drawings. If a certain utility is not identified as potholed, then its depth on the profile might be based on a reasonable assumption or on other available information such as nearby surveyed manhole invert elevations, valve nut measure-downs, record drawings, or other information as may or may not be indicated. If horizontal or vertical locations of existing utilities are found to be in conflict through the Contractor’s own supplemental potholing efforts or during construction, then coordinate with the Engineer to adjust the elevation or location of the new pipeline to achieve adequate clearance from the existing utility or other agreed upon measure to resolve the conflict. 
+#### The Engineer may not have independently verified any pothole information shown on the Drawings and is not responsible for the accuracy and completeness of utility locating and potholing work. Utility locates and potholing results are provided for the Contractor’s convenience only. Reliance upon utility data depicted on the Drawings for risk management purposes during bidding does not relieve the Contractor from following all applicable utility damage prevention statues, required use of 811, and/or other required or best practices during construction. It is important that the Contractor investigates and understands the scope of work between the Owner and Engineer regarding the scope and limits of the utility investigation leading to the utility depictions shown on the Drawings. It may be necessary for the Contractor to provide for their own supplemental utility locating and/or potholing prior to excavating or ordering material to the extent they feel is necessary to complete the work safely and successfully. 
+#### Potholing during design was not conducted. The Contractor shall provide for potholing and elevation survey of existing utilities present along the proposed pipeline alignment. Do not prepare any shop drawings for, or make final order for, or design any pipe materials for any particular section of pipeline until confirmation of the location of utilities is complete, and until such time as no interferences are identified between the proposed pipeline and said existing utilities. If interferences are found, do not proceed until the pipeline design alignment or profile has been modified or otherwise reconciled by the Engineer to eliminate all such known interferences. Provide a copy of the pothole survey to the Engineer. 
+### Existing System, Continuity Of Service, Cut-Ins, And Shut-Downs
+#### The existing system must at all times remain under the control of the Owner. The Contractor shall operate no valves or hydrants on the system without permission of the Owner.
+#### The Contractor shall coordinate service interruptions with the Owner and affected parties. No interruption of service shall be permitted without prior approval. Give at least two (2) days’ notice and make appropriate arrangements with the Owner and affected parties prior to shutdown. Schedule shutdowns for periods of minimum use and at the Owner’s and affected parties convenience. Have all material, equipment, and personnel on hand prior to beginning any work involving a potential shutdown. Perform work in a manner that reduces the shutdown time to the minimum. In some cases, an increased number of personnel or night or weekend work may be necessary. The Contractor shall take precautions as necessary to minimize interruption of all utility services and will be responsible for restoration of service.
+#### At any time that a customer on the existing system will be deprived of service, the Contractor shall advise such customer at least 2 days in advance when the service will be discontinued and when the service will again be available. Service shall not be disrupted for more than a four-hour period. If a longer shutdown period will be necessary, the Contractor shall provide a temporary service to the customer, subject to the review and approval of the Engineer.
+#### All points at which the existing piping systems are to be disconnected and connected to the new pipelines are shown on the Drawings. Connections to the existing system shall be completed after new pipeline, manholes and other appurtenances are installed and tested. Connections shall be done in accordance with the details given for each point of disconnection or reconnections. At each point of connecting new pipes to existing pipes, the Contractor shall expose the existing pipe and locate a good sound point at which to cut the existing pipe off square. They shall then provide and install the approved transition coupling or sleeve suitable for connecting the two types of pipe.
+# products
+## GENERAL
+### All pipe, fittings, couplings, and appurtenant items shall be new, free from defects or contamination, and wherever possible shall be the standard product of the manufacturer. They shall be furnished in pressure or thickness classes as specified or shown. All pipe shall have joints as called for in the specifications or indicated on the Drawings. 
+## POLYVINYL CHLORIDE (PVC) Gravity Sewer PIPE
+### Pipe
+#### Each length of pipe shall be marked with the manufacturer’s, name or trademark, nominal size, weight, thickness class or diameter ratio (DR), cell classification, type of pipe (e.g. ASTM D3034), and the date of manufacture.
+#### PVC gravity sewer of pipe 15-inches nominal diameter and smaller shall conform to ASTM D3034 with a dimension ratio (DR) of 35 or as indicated in the Drawings.
+#### The pipe material shall be of virgin source, conform to ASTM D1784 Cell Classification 12364.The pipe shall be furnished in nominal lengths of 20 feet and shall be green in color.
+#### The pipe shall be joined with gasketed, integral bell and spigot-type joints. Joints will provide for contraction and expansion at each joint with a rubber ring, and integral thickened bell as part of each joint.
+##### Integral joints shall conform to ASTM D3212.
+##### The minimum wall thickness of the bell at any point shall conform to the DR and stiffness requirements of the pipe.
+##### Gaskets shall conform to ASTM F477 and shall be marked with the name of the manufacturer, size, and proper insertion directions.
+### Fittings and accessories for PVC gravity sewer pipe shall have push-on joints and shall meet the requirements of ASTM D3139, with wall thickness or stiffness equal to or greater than the pipe.
+## DUCTILE IRON PIPE, FITTINGS, AND APPURTENANCES
+### Pipe: Ductile‑iron pipe, conforming to AWWA C151/ A21.51. Provide pressure class as indicated on the Drawings. 
+### Joints: Ductile iron pipe shall be flanged, push-on, or mechanical joint as shown on the Drawings. In general, flanged pipe shall be used above ground or where exposed in vaults etc., while push-on or mechanical joint will be used where buried in earth.
+#### Mechanical and Push-On: In accordance with AWWA C111/ A21.11.
+#### Flanged joints: In accordance with Section 40 05 05. 
+#### Gasket compound: EPDM compound shall be provided for sewage, sludge, and reclaimed water.
+### Fittings: 
+#### Ductile‑iron conforming to the requirements set forth in AWWA C110/ A21.10 or AWWA C153/ 21.53. Provide Class 250 minimum. Joint type shall be as specified above, and as shown on the Drawings or appropriate for the installation location. 
+#### All mechanical joint solid sleeves shall be long pattern. 
+### Spools and Wall Pipe: 
+#### Spools may be cast as fittings in accordance with AWWA C110 or fabricated from Special Thickness Class 53 ductile iron pipe in accordance with AWWA C115. Wall pipe shall have collars integrally cast. Collars shall be located so as to be in the center of the concrete wall or floor into which they are to be placed.
+### Interior Lining: 
+#### Pipe, spools and fittings shall be cement mortar lined and seal coated in accordance with AWWA C104/ A21.4. Lining shall be recommended by manufacturer for sewer service.
+### Exterior Coating: 
+#### Pipe, spools, and fittings to be buried in earth or installed within below-grade vaults shall be furnished with standard thickness asphalt coating per AWWA C151. 
+#### Pipe, spools, and fittings to be installed above ground shall be in accordance with Section 40 05 05. 
+#### Pipe, spools, and fittings to be installed in submerged locations shall be supplied by the factory bare, for shop blasting and application of the specified submerged protective coating system. Asphalt coated or prime coated pipe shall not be used in exposed or submerged locations.
+## buried Utility warning tape
+### As specified in Section 33 05 98.
+## Source Quality Control
+### Factory Test:
+#### The supplier shall be responsible for the provisions of all test requirements specified in ASTM or other applicable standards.
+# execution
+## GENERAL
+### Do not lay pipe when trenches or weather conditions are unsuitable for such work. 
+### Each pipe length and fitting interior, interior surface of bells, and exterior surface of spigots shall be cleaned of all foreign material before placing it in the trench and shall be kept clean all times thereafter. Each item shall also be examined for cracks and other defects before installation.
+### Field cutting of pipe for inserting valves, fittings, or closure pieces shall be done in a neat and skillful manner without damage to the pipe, and to leave a smooth end at right angles to the axis of the pipe. 
+### Each pipe length shall be laid true to line and grade, without intermediate high or low points not shown on the Drawings. If field conditions are encountered that preclude installation per the Drawings, immediately notify the Engineer for resolution. 
+### Pipe shall be laid in a dry (dewatered) trench and shall not be used for draining water from the trench.
+### Whenever the pipe is left unattended or pipe laying is not in progress, temporary plugs shall be installed at all openings. Temporary plugs shall be watertight and of such design as to prevent debris and animals from entering the pipe. All temporary plugs shall be subject to review by the Engineer.
+### In some special circumstances it may be necessary to install the pipeline at a slope differing from the design plans, such as to avoid other utilities. All special circumstances are subject to the approval of the Engineer.
+### The Contractor shall install the materials in accordance with the manufacturer’s recommendations. If there is a conflict between the Contract Documents and the manufacturer’s instructions, the Contractor shall obtain resolution from the Engineer before proceeding with the work. 
+## {{anchor|Hlk77164591}} INSTALLATION OF DUCTILE‑IRON PIPELINES
+### Except as specified herein or unless specifically authorized by the Engineer, all installation of pipe shall conform to the recommendations contained in “A Guide for Installation of Ductile‑Iron Pipe,” published by the Ductile Iron Pipe Research Association. A copy shall be available at the job site.
+### Pipe Laying: Pipe shall be laid with bell ends facing in the direction of laying, unless directed otherwise by the Engineer. Pipe shall be laid on the bedding with support over the full length of the pipe barrel.
+### The cutting of pipe for inserting valves, fittings, or closure pieces shall be done in a neat and skillful manner without damage to the pipe or cement lining to leave a smooth end at right angles to the axis of the pipe. Flame cutting of pipe by means of an oxyacetylene torch will not be allowed. The pipe end shall be beveled and free of sharp edges that could damage the gasket during installation.
+### Jointing of Mechanical Joints: 
+#### The last 8 inches of the pipe spigot and the inside of the bell of the mechanical joint shall be thoroughly cleaned to remove oil, grit, tar (other than standard coating), and other foreign matter from the joint, and then painted with a manufacturer supplied lubricant or soap solution made by dissolving one‑half cup of granulated soap in one gallon of water. The ductile‑iron gland shall then be slipped on the spigot end of the pipe with the lip extension of the gland toward the spigot end. The gasket shall be painted with the lubricant or soap solution and placed on the spigot end of the pipe to be laid, with the thick edge toward the gland.
+#### The entire section of the pipe being laid shall be pushed forward to seat in the spigot end of the bell of the pipe in place. The gasket shall then be pressed into place within the bell, being careful to have the gasket evenly located around the entire joint. The cast-iron gland shall be moved along the pipe into position for bolting, all the bolts inserted, and the nuts screwed up tightly with fingers. All nuts shall then be tightened with a suitable (preferably torque‑limiting) wrench. The torque for various sizes of bolts shall be as follows:
+
+# 
+## 
+### 
+#### Nuts spaced 180 degrees apart shall be tightened alternately to produce an equal pressure on all parts of the gland.
+### Jointing of Push‑On Joints: 
+#### In jointing the pipe, the exterior 4 inches of the pipe at the spigot end and the inside of the adjoining bell and particularly the groove for the gasket shall be thoroughly cleaned to remove oil, grit, tar (other than standard coating), and other foreign matter. The proper gasket supplied with the pipe shall be placed in the bell as described by the pipe manufacturer so it will spring into its proper place inside the pipe bell. A thin film of the pipe manufacturer's joint lubricant shall be applied to the gasket over its entire exposed surface. The spigot end of the pipe shall then be wiped clean and inserted into the bell to contact the gasket. Then the pipe shall be forced all the way into the bell by crowbar, or by jack and choker slings. The location of the gasket shall be checked with a gauge or tool designed for that purpose to assure that the gasket is in the proper position.
+### Installation of Proprietary Restrained Joints: 
+#### Restrained-joint pipe and fittings shall be installed according to manufacturer's recommendations. Torque wrenches and any recommended special tools shall be used during installation. Any special tools shall be supplied to the Owner.
+## INSTALLATION OF PVC PLASTIC PIPE
+### General: Pipe shall be installed in accordance with Uni-Bell Handbooks and ASTM D2321.
+### Pipe Laying
+#### Pipe shall be laid with bell end facing in the direction of laying, unless directed otherwise by the Engineer.
+#### Pipe shall be laid starting with the lowest elevation end of each main.
+### Cutting:
+#### The cutting of pipe for pieces shall be done in a neat and skillful manner without damage to the pipe.
+#### Use abrasive wheel cutters or saws.
+#### Make cuts square to the pipe.
+#### Bevel and free cut ends of sharp edges after cutting to leave a smooth end.
+#### Place a clearly visible position mark at the correct distance from the end of the field cut pipe.
+### Jointing the Pipe
+#### The outside of the spigot, inside of the bell, and gasket shall be thoroughly wiped clean.
+#### Set the rubber ring in the socket in the bell with the marked edge facing toward the end of the bell.
+#### Any bulges in the gasket, which might interfere with the entry of the plain end of the pipe shall be removed.
+#### A thin film of lubricant shall be applied to the gasket surface, which will contact the spigot end of the pipe. The lubricant shall be furnished by the pipe manufacturer. Lubricant shall also be applied to the outside of the plain spigot end of the pipe where it will contact the gasket.
+#### Push the pipe spigot into the bell manually, with blocking and bar or with special jacks. Pipe joint shall not be assembled using power or trenching equipment.
+#### Position the completed joint so that the mark on the pipe end is in line with the end of the bell.
+#### Do not insert the spigot end of the pipe beyond the “home” mark. The mark shall be visible and in line with the bell end in every case. The inspector may require removal and reinsertion of the joint to the correct position at any time the mark is not visible after insertion. No exceptions to this requirement are allowed under any circumstances.
+#### If assembly is not accomplished by reasonable force, the plain end shall be removed and the condition corrected.
+## BURIED UTILITY WARNING TAPE
+### Install in accordance with Section 33 05 98. 
+## Flushing
+### The Contractor shall flush the pipelines as the work progresses in accordance with good practice to ensure that sand, rocks, or other foreign material are not left in any of the pipelines. If possible, the flushing shall be made through an open pipe end; otherwise, use of a fire hydrant may be acceptable, but only on approval of the Engineer.
+## Site Quality Control
+### Site Tests
+#### Tests shall be performed after services are installed and all backfill has been placed.
+#### Tests shall occur after the pipeline has been flushed clean of sediment and debris.
+#### Mandrel Test
+##### A mandrel (95% of base ID) shall be pulled through all PVC gravity mains to test for unacceptable ring deflection.
+##### Ring deflection, tested 30 days after backfill, shall not exceed 5%.
+##### An alternative to waiting 30 days is to submit a certification from a soil sampling firm indicating that backfill was compacted to 95% maximum density.
+#### Pressure Test: All sewer pipe shall be tests as required in City of Morganton Construction Specifications for Sewer Lines
+#### Television Inspection
+##### All gravity sewer mains TV inspected in the presence of Town personnel after all other utilities have been installed, and at the end of the warranty period.
+### Deficiencies shall be corrected prior to acceptance and operation.
+### Copies of all testing results and inspection videos shall be submitted to the Owner prior to acceptance.
+
+
+END OF SECTION

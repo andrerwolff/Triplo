@@ -3,9 +3,6 @@ import lorem
 from project_page import project_page
 from project import Project
 
-
-
-
 # Set the page configuration
 st.set_page_config(
     page_title="Triplo",
@@ -16,8 +13,8 @@ st.set_page_config(
 
 # Initialize the session states
 if 'project_list' not in st.session_state:
-    p1 = Project("Lafayette WRF")
-    p2 = Project("NWC - CSU Spur")
+    p1 = Project("Lafayette WRF", "Wastewater Treatment Plant")
+    p2 = Project("NWC - CSU Spur", "Structure - Higher Education")
     st.session_state.project_list = [p1, p2]
 if 'page' not in st.session_state:
     st.session_state.page = "home"
@@ -54,18 +51,19 @@ def home_page():
     c1.header("Active Projects")
     # Cycle through the list of projects and display them in an expander
     for project in st.session_state.project_list:
-        expander = c1.expander(project.name, expanded=False)
-        expander.write(lorem.sentence())
+        if project.status == "Active":
+            expander = c1.expander(project.name, expanded=False)
+            expander.write(str(project))
 
-        col1, col2 = expander.columns([0.8,0.2])
-        # Button to navigate to the project page
-        if col1.button("Go To Project :arrow_right:", key="go_"+project.name):
-            st.session_state.project = project
-            st.session_state.page = "project"
-            st.rerun()
-        if col2.button(":x:*Delete Project*", key="del_"+project.name):
-            st.session_state.project_list.remove(project)
-            st.rerun()
+            col1, col2 = expander.columns([0.8,0.2])
+            # Button to navigate to the project page
+            if col1.button("Go To Project :arrow_right:", key="go_"+project.name):
+                st.session_state.project = project
+                st.session_state.page = "project"
+                st.rerun()
+            if col2.button(":x:*Delete Project*", key="del_"+project.name):
+                st.session_state.project_list.remove(project)
+                st.rerun()
 
     # Dialog box to create a new project
     @st.dialog("Create New Project")

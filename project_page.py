@@ -4,11 +4,9 @@ from project import Project
 
 def project_page(project):
     st.title(project.name)
-    st.subheader("Project Description", divider="gray")
+    st.subheader(project.desc, divider="gray")
 
-    proj_dash, proj_ref, subs, rfis = st.tabs(["Project Dashboard", "Project Reference Docs", "Submittals", "RFIs"])
-
-    with proj_ref:
+    with st.expander("Project References", icon=":material/summarize:"):
         uploaded_files = st.file_uploader("Add a reference document (.txt).", type="'txt'" ,accept_multiple_files=True)
         for uploaded_file in uploaded_files:
             bytes_data = uploaded_file.read()
