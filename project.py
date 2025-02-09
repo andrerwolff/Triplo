@@ -1,3 +1,5 @@
+from submittal import Submittal
+
 class Project:
     def __init__(self, name, desc, status='Active'):
         self.name = name
@@ -12,9 +14,11 @@ class Project:
 
     def add_project_resource(self, file):
         self.project_resources.append(file)
+        print(self)
     
     def add_submittal(self, submittal):
         self.submittals.append(submittal)
+        print(self)
 
     def add_team_member(self, contact):
         self.contacts.append(contact)
