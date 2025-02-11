@@ -11,51 +11,29 @@ def project_page(project: Project):
         for resource in project.project_resources:
             st.write(resource.name)
         st.divider()
-        uploaded_file = st.file_uploader("Upload Project Reference")
-        if uploaded_file is not None:
-            project.add_project_resource(uploaded_file)
-            st.rerun()
 
+        if 'uploaded_file' not in st.session_state:
+            st.session_state.uploaded_file = None
+
+        uploaded_file = st.file_uploader("Upload Project Reference")
+        if uploaded_file is not None and uploaded_file != st.session_state.uploaded_file:
+            if uploaded_file.name not in [r.name for r in project.project_resources]:
+                project.add_project_resource(uploaded_file)
+                st.session_state.uploaded_file = uploaded_file
+                st.rerun()
 
     with st.expander("Submittals", icon=":material/docs:"):
-        in_process, completed = st.tabs(["Under Review", "Completed"])
-        with in_process:
-            # Container to display submittals
-            c1 = st.container(border=True)
-            # Cycle through the list of projects and display them in an expander
-            for submittal in project.submittals:
-                if submittal.status == "Active":
-                    expander = c1.expander(submittal, expanded=False)
-                    expander.write(lorem.sentence())
-
-                    col1, col2 = expander.columns([0.8,0.2])
-                    # Button to navigate to the project page
-                    if col1.button("Go To Submittal :arrow_right:", key="go_"+submittal):
-                        st.session_state.submittal = submittal
-                        st.session_state.page = "submittal"
-                        st.rerun()
-                    if col2.button(":x:*Delete Submittal*", key="del_"+submittal):
-                        st.session_state.submittal_list.remove(submittal)
-                        st.rerun()
-        with completed:
-            c2 = st.container(border=True)
-            # Cycle through the list of projects and display them in an expander
-            for submittal in project.submittals:
-                if submittal.status == "Closed":
-                    expander = c2.expander(submittal, expanded=False)
-                    expander.write(lorem.sentence())
-
-                    col1, col2 = expander.columns([0.8,0.2])
-                    # Button to navigate to the project page
-                    if col1.button("Go To Submittal :arrow_right:", key="go_"+submittal):
-                        st.session_state.submittal = submittal
-                        st.session_state.page = "submittal"
-                        st.rerun()
-                    if col2.button(":x:*Delete Submittal*", key="del_"+submittal):
-                        st.session_state.submittal_list.remove(submittal)
-                        st.rerun()
+        # Cycle through the list of projects and display them in an expander
+        for submittal in project.submittals:
+            st.button(submittal.name)
         st.divider()
+
+        if 'uploaded_file' not in st.session_state:
+            st.session_state.uploaded_file = None
+
         uploaded_file = st.file_uploader("Upload Submittal")
-        if uploaded_file is not None:
-            project.add_submittal(uploaded_file)
-            st.rerun()
+        if uploaded_file is not None and uploaded_file != st.session_state.uploaded_file:
+            if uploaded_file.name not in [r.name for r in project.submittals]:
+                project.add_submittal(uploaded_file)
+                st.session_state.uploaded_file = uploaded_file
+                st.rerun()

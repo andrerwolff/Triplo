@@ -1,4 +1,4 @@
-class Submittal():
+class Submittal:
     def __init__(self, name, desc, status='Active'):
         self.name = name
         self.desc = desc

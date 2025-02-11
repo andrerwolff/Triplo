@@ -18,7 +18,7 @@ class Project:
     
     def add_submittal(self, submittal):
         self.submittals.append(submittal)
-        print(self)
+        print(self, "submittal add")
 
     def add_team_member(self, contact):
         self.contacts.append(contact)
