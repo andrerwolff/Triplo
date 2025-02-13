@@ -1,28 +1,43 @@
 from submittal import Submittal
+from reference import Reference
 
 class Project:
     def __init__(self, name, desc, status='Active'):
         self.name = name
         self.desc = desc
         self.status = status # Active, Completed, On Hold
-        self.project_resources = []
+        self.references = []
         self.submittals = []
         #self.created_at = datetime.now()
         #self.updated_at = datetime.now()
         self.contacts = []
         print(self)
 
-    def add_project_resource(self, file):
-        self.project_resources.append(file)
-        print(self)
+    def add_reference(self, file, ref_type, comments):
+        ref = Reference(file.name, ref_type, file, comments)
+        self.references.append(ref)
+        print(self.references)
+
+    def remove_project_resource(self, file_name):
+        for file in self.references:
+            if file.name == file_name:
+                self.references.remove(file)
+                return True
     
-    def add_submittal(self, submittal):
-        self.submittals.append(submittal)
-        print(self, "submittal add")
+    def add_submittal(self, file, num, comments, spec_refs):
+        sub = Submittal(num, file.name, comments, spec_refs)
+        self.submittals.append(sub)
+        print(self.submittals)
+
+    def remove_submittal(self, sub_name):
+        for sub in self.submittals:
+            if sub.name == sub_name:
+                self.submittals.remove(sub)
+                return True
 
     def add_team_member(self, contact):
         self.contacts.append(contact)
 
     def __repr__ (self):
-        return f"Project({self.name}, {len(self.project_resources)} resources, {len(self.submittals)} submittals)"
+        return f"Project({self.name}, {len(self.references)} references, {len(self.submittals)} submittals)"
 
