@@ -52,7 +52,7 @@ def new_ref(project):
 @st.dialog("Upload Submittal") #num :int, name, spec_refs, references, status='Active'
 def new_sub(project):
     with st.form("new_sub", border=False):
-        num = st.number_input("Submittal Number:")
+        num = st.text_input("Submittal Number:")
         name = st.text_input("Submittal Name:")
         spec_refs = st.multiselect("Relevent Specifications:", CSI_DIVS)
         comments = st.text_input("Comments:")

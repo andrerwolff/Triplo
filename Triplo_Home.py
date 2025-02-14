@@ -1,6 +1,7 @@
 import streamlit as st
 import lorem
 from project_page import project_page
+from debug_page import debug_page
 from project import Project
 from user import User
 
@@ -44,6 +45,9 @@ for project in st.session_state.user.project_list:
 st.sidebar.divider()
 st.sidebar.button("Settings", icon=":material/settings:",key="settings", type="tertiary")
 st.sidebar.button("Help",icon=":material/help:", key="help", type="tertiary")
+if st.sidebar.button("debug"):
+    st.session_state.page = "debug"
+    st.rerun()
 
 
 # Define the pages
@@ -94,3 +98,5 @@ if st.session_state.page == "home":
     home_page()
 elif st.session_state.page == "project":
     project_page(st.session_state.project)
+elif st.session_state.page == "debug":
+    debug_page()

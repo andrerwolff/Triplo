@@ -24,10 +24,9 @@ class Project:
                 self.references.remove(file)
                 return True
     
-    def add_submittal(self, file, num, comments, spec_refs):
-        sub = Submittal(num, file.name, comments, spec_refs)
+    def add_submittal(self, file, num, comments, s_refs):
+        sub = Submittal(num, file.name, file, comments, s_refs)
         self.submittals.append(sub)
-        print(self.submittals)
 
     def remove_submittal(self, sub_name):
         for sub in self.submittals:
