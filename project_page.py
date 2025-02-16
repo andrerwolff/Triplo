@@ -22,7 +22,10 @@ def project_page(project: Project):
     with st.expander("Submittals", icon=":material/docs:"):
         # Cycle through the list of projects and display them in an expander
         for submittal in project.submittals:
-            st.button(submittal.name)
+            if st.button(submittal.name):
+                st.session_state.submittal = submittal
+                st.session_state.page = "submittal"
+                st.rerun()
         st.divider()
 
         if st.button("Upload Submittal"):

@@ -1,2 +1,4 @@
 google-generativeai
-lorem
+google-cloud-storage
+pimupdf4llm
+st-files-connection

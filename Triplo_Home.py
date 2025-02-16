@@ -1,6 +1,7 @@
 import streamlit as st
 import lorem
 from project_page import project_page
+from submittal_page import submittal_page
 from debug_page import debug_page
 from project import Project
 from user import User
@@ -98,5 +99,7 @@ if st.session_state.page == "home":
     home_page()
 elif st.session_state.page == "project":
     project_page(st.session_state.project)
+elif st.session_state.page == "submittal":
+    submittal_page(st.session_state.project, st.session_state.submittal)
 elif st.session_state.page == "debug":
     debug_page()
