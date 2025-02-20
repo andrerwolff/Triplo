@@ -1,5 +1,4 @@
 import streamlit as st
-import lorem
 from project_page import project_page
 from submittal_page import submittal_page
 from debug_page import debug_page

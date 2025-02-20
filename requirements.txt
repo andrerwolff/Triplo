@@ -1,4 +1,4 @@
 google-generativeai
 google-cloud-storage
 pimupdf4llm
-st-files-connection
+st-files-connectionpip

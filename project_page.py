@@ -1,5 +1,4 @@
 import streamlit as st
-import lorem
 from project import Project
 from submittal import Submittal
 from constants import CSI_DIVS
