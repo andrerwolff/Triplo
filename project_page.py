@@ -66,15 +66,15 @@ def project_page(project):
             st.write("filename:", uploaded_file.name)
             
             if uploaded_file.name.endswith(".txt"):
-                st.write(bytes_data.decode("utf-8"))  # Display text from .txt files
+                st.text_area("Extracted Content", text, height=200)   # Display text from .txt files
 
             elif uploaded_file.name.endswith(".docx"):
                 text = extract_text_from_docx(uploaded_file)
-                st.write(text)  # Display the extracted text from docx
+                st.text_area("Extracted Content", text, height=200)  # Display the extracted text from docx
 
             elif uploaded_file.name.endswith(".pdf"):
                 text = extract_text_from_pdf(uploaded_file)
-                st.write(text)  # Display the extracted text from pdf
+                st.text_area("Extracted Content", text, height=200)  # Display the extracted text from pdf
             
 
     # 📂 **Submittals Tab**
