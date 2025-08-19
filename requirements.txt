@@ -1,3 +1,6 @@
 google-generativeai
 google-cloud-storage
 pimupdf4llm
+fastapi
+uvicorn
+python-dotenv

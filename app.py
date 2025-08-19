@@ -2,7 +2,20 @@ import google.generativeai as genai
 import os
 import base64
 import json
+from fastapi import FastAPI, UploadFile, File, Form
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
+
+app = FastAPI()
+
+# Enable CORS for GitHub Pages frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["https://andrerwolff.github.io"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # ---- Load API Key ----
 load_dotenv()
@@ -12,19 +25,16 @@ genai.configure(api_key=os.getenv('GOOGLE_API_KEY'))
 model = genai.GenerativeModel('gemini-2.0-flash')
 
 # ---- Helper: Read file and convert to Gemini format ----
-def encode_pdf_to_gemini_content(pdf_path):
-    with open(pdf_path, 'rb') as pdf_file:
-        encoded = base64.b64encode(pdf_file.read()).decode('utf-8')
-    return {
-        "mime_type": "application/pdf",
-        "data": encoded
-    }
+def encode_pdf_to_gemini_content(pdf_bytes):
+    encoded = base64.b64encode(pdf_bytes).decode('utf-8')
+    return {"mime_type": "application/pdf", "data": encoded}
+
+
 
 # ---- Main Generator ----
-def generate_review(spec_text, pdf_path):
-    pdf_content = encode_pdf_to_gemini_content(pdf_path)
-
-    # Prompt is aligned with earlier guidance
+@app.post("/generate_review")
+async def generate_review(spec_text: str = Form(...), submittal: UploadFile = File(...)):
+    pdf_content = encode_pdf_to_gemini_content(await submittal.read())
     prompt = """
 You are an experienced civil engineer assisting a junior engineer with a high-level product submittal review. You are not writing a formal response, but providing an internal review summary.
 
@@ -73,20 +83,9 @@ Be helpful, direct, and concise. If unsure, defer to project team review. Avoid 
 
     # Combine prompt and inputs
     response = model.generate_content([prompt, spec_text, pdf_content])
-    return response.text
+    return {"review": response.text}
 
 # ---- Example Usage ----
 if __name__ == "__main__":
-    spec_file = 'resources/33 05 05.02 Buried Piping-Gravity_v1.txt'
-    pdf_file = 'resources/Subm 2402-006, Ferguson, PVC SDR35 PS46 Pipe, 4-15-24.pdf'
-
-    with open(spec_file, 'r') as f:
-        spec_text = f.read()
-
-    review = generate_review(spec_text, pdf_file)
-
-    output_file = 'structured_submittal_review.txt'
-    with open(output_file, 'w') as f:
-        f.write(review)
-
-    print(f"Submittal review written to: {output_file}")
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
