@@ -1,0 +1,39 @@
+Okay, here's a review summary based on the provided spec and submittal:
+
+**Section 1: Summary of Submitted Product**
+
+*   **Product Name / Model:** PVC SDR35 PS46 Sewer Pipe
+*   **Manufacturer:** Ferguson Waterworks (distributor, pipe presumably manufactured by JM Eagle)
+*   **Key features / performance data:** SDR 35, PS46, integral bell and Rieber gasket
+*   **Certifications or test data included:** References to ASTM D3034, D3212, F477, D1784 on product data sheets. No independent certification provided.
+*   **Notable product images or diagrams:** Rieber Joint illustration
+
+**Section 2: Compliance Snapshot**
+
+*   [U] Manufacturer is listed in the spec (or equal?)
+*   [C] Product is PVC pipe
+*   [C] Pipe sizes match the sizes listed in the specification
+*   [C] DR matches specified requirements (DR 35)
+*   [C] Product appears to meet ASTM material requirements.
+*   [C] Submittal references the required test data and certifications, but has not been directly provided
+*   [C] Integral joints conform to ASTM D3212
+*   [C] Gaskets conform to ASTM F477
+*   [C] Installation instructions or procedures are referenced (ASTM D2321, Uni-Bell)
+*   [U] Installation guide specifically included?
+
+**Section 3: Potential Issues or Gaps**
+
+*   The submittal is a distributor submittal, not manufacturer. No independent certifications are provided for review.
+*   Submittal lacks installation instructions or procedures.
+*   Spec requires affidavit of compliance with ASTM. This is not included in the submittal.
+*   The City of Morganton specifications are referenced in the specification, and this product must be reviewed for compliance. This information has not been provided.
+*   Submittal only lists T. Lowell certifications.
+
+**Section 4: Recommendations for Engineer Review**
+
+*   Confirm if Ferguson/JM Eagle is an approved manufacturer or equivalent.
+*   Request the affidavit of compliance with ASTM and other referenced standards.
+*   Request the City of Morganton specifications.
+*   Request installation procedures.
+*   Flag the lack of submitted test data or certification for project team review.
+*   Ensure the variation to contract is understood and acceptable.

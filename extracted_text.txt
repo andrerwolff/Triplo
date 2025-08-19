@@ -1,0 +1,85 @@
+SUBMERGED TURBINE MIXERS– SECTION 46 41 00 
+ 
+46 41 00 Submerged Turbine Mixers: 8/1/2025: 65420422   46 41 00-1  PART 1 -- GENERAL 
+1.1  SCOPE OF WORK: This specification covers furnishing and installing twelve new 
+submerged turbine mixer-aerator systems in the Aeration Basin 1 (East Campus).  
+1.2 CONTRACTOR SUBMITTALS: The Contractor shall submit shop drawings and other 
+requirements per Section 01 33 00 including: 
+a. Motor horsepower for maximum load condition at 5,100 elevation, 
+b. Shaft sizes, 
+c. Power factor at design load, 
+d. Motor efficiency at design load, 
+e. Efficiency at design load, 
+g. Safety factor of drive system.  
+f. Structural design and shop drawings for the walkway and platform.  
+h.  Aeration calculations for the Submerged Turbine Aerators. 
+ 
+PART 2 -- PRODUCTS  
+2.1 SUBMERGED TURBINE AERATORS:  The units will provide aeration and mixing in each 
+zone of aeration for a complete mix activated sludge treatment process. All aerators shall include 
+the motor, drive mechanism, gearbox, support structure with vibration absorbers, impellers, shaft, 
+bottom bearing guide, air spargers, OSHA required guards, and all other parts and fittings 
+required to place the aerator in operation.  
+ 
+The turbine and air sparger assembly shall be compatible with the concrete structures shown on 
+the drawings. The assemblies shall be suitable for this oxygen transfer at an elevation of 5,100 
+feet and a sludge temperature range of 40 to 100 degrees Fahrenheit. The new assemblies shall 
+be adequate for creating a completely mixed flow regime in domestic wastewater. The dimensions 
+of each zone of aeration and its respective maximum actual oxygen requirement are listed below: 
+ 
+Zone of Aeration Dimensions  
+(L x W x SWD)  
+Number of units AOR (pounds oxygen 
+per hour) 
+Pre-Anoxic 1 59.3' x 24.3' x 16' 2 16.0 
+Pre-Anoxic 2 59.3' x 24.3' x 16' 2 16.0 
+Pre-Anoxic 3 32' x 25.4' x 16' 1 9.0 
+Sludge Reaeration 32' x 25.4' x 16' 1 48.3 
+Aeration 1 51.5' x 32' x 16' 2 103.5 
+Aeration 2 51.5' x 43' x 16' 2 74.8 
+Post-Anoxic 51.5' x 38' x 16' 2 21.7 
+ SUBMERGED TURBINE MIXERS– SECTION 46 41 00 
+ 
+46 41 00 Submerged Turbine Mixers: 8/1/2025: 65420422   46 41 00-2  Submerged metal parts shall be 304 stainless steel; if welded, the metal shall be 304L. 
+The air sparger will be compatible with the turbine for providing adequate oxygen transfer. The 
+air sparger shall connect to air piping by 6-inch Class 125 standard flanged end connections. 
+Provide supports suitable for anchoring the air sparger to the concrete floor. 
+The aerator shall be designed to adequately mix and keep in suspension aerated solids within a 
+zone of influence equal to the basin size shown on the Drawings. 
+The associated motors shall be 480-volt, 3-phase motor with motor protection (type IP 55 or IP 
+65), and thermal protection using PTC resistors. The motor HP shall not be greater than 12.5- or 
+20-horsepower (altitude corrected), as indicated on the Drawings. The motor will be driven using 
+a constant speed motor.  
+AGMA gear calculations and bearing rating calculations are to be submitted and shall be equal to 
+an AGMA Class I for the motor horsepower at design output speed and 80,000 hours of B-10 life 
+at this rating. 
+The shaft bearing assembly shall be designed to operate at or below 0.7 of the natural frequency 
+of the system.  
+The aerator turbine shaft shall be stainless-steel with flanged connection to the gearbox shaft and 
+impeller. 
+Each agitator shall be furnished with a turbine-type impeller. The maximum impeller diameter 
+shall be 96-inches. The mixer body will be composed of high-quality fiberglass reinforced plastic 
+(FRP) or stainless steel. The bottom bearing guide shall be made from stainless fixed below the 
+unit on the basin floor.  
+The Contractor shall furnish HyperClassic Mixer/Aerator units by INVENT or AER-GS mixer units 
+by AquaTurbo. 
+PART 3 -- EXECUTION   
+3.1 GENERAL: Shipping, handling, storage, and installation shall be in conformance with the 
+manufacturer’s recommendations.  
+3.2 INSTALLATION AND START-UP SUPERVISION 
+A. Services of the manufacturer’s factory trained representative, who is specifically 
+knowledgeable in the type of equipment specified herein, shall be provided during the 
+equipment installation period.  
+B. Upon completion of the installation, the services of the manufacturer’s factory trained 
+representative shall be provided at the project site for equipment and performance testing. 
+During the start-up, the manufacturer’s representative shall inspect all system components 
+for proper connection and alignment and assist the Owner in placing the equipment in a 
+proper operating condition.  
+C. Contractor to coordinate with Manufacturer and Engineer for schedule.  SUBMERGED TURBINE MIXERS– SECTION 46 41 00 
+ 
+46 41 00 Submerged Turbine Mixers: 8/1/2025: 65420422   46 41 00-3  3.3 OPERATOR TRAINING: Upon satisfactory completion of the start-up, the manufacturer’s 
+representative shall instruct the Owner’s personnel in the proper operation and maintenance of 
+the equipment. 
+ 
+ 
+ - END OF SECTION - 
