@@ -30,16 +30,13 @@ export function ProjectPage() {
   const { projectId } = useParams<{ projectId: string }>()
   const [project, setProject] = useState<Project | null>(null)
   const [projects, setProjects] = useState<Project[]>([])
-  const [csiDivisions, setCsiDivisions] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
   const [loadError, setLoadError] = useState<string | null>(null)
   const [rfiOpen, setRfiOpen] = useState(false)
   const [rfiTitle, setRfiTitle] = useState("")
   const [rfiDesc, setRfiDesc] = useState("")
   const [rfiStatus, setRfiStatus] = useState("Open")
-  const [refCsi, setRefCsi] = useState("")
   const [refFile, setRefFile] = useState<File | null>(null)
-  const [subCsi, setSubCsi] = useState("")
   const [subFile, setSubFile] = useState<File | null>(null)
   const [uploading, setUploading] = useState(false)
   const [submittalsView, setSubmittalsView] = useState<"open" | "closed">("open")
@@ -52,11 +49,14 @@ export function ProjectPage() {
   const [editName, setEditName] = useState("")
   const [editSaving, setEditSaving] = useState(false)
   const [editError, setEditError] = useState<string | null>(null)
+  const [evaluateDialogOpen, setEvaluateDialogOpen] = useState(false)
+  const [evaluateSubmittal, setEvaluateSubmittal] = useState<Submittal | null>(null)
+  const [evalSpecFile, setEvalSpecFile] = useState<File | null>(null)
+  const [evalSubmittalFile, setEvalSubmittalFile] = useState<File | null>(null)
   const navigate = useNavigate()
 
   useEffect(() => {
     api.getProjects().then((r) => setProjects(r.projects))
-    api.getCsiDivisions().then((r) => setCsiDivisions(r.divisions))
   }, [])
 
   useEffect(() => {
@@ -86,10 +86,9 @@ export function ProjectPage() {
   const addReferenceDoc = () => {
     if (!projectId || !refFile) return
     setUploading(true)
-    api.addReferenceDoc(projectId, refFile, refCsi).then((p) => {
+    api.addReferenceDoc(projectId, refFile, "").then((p) => {
       setProject(p)
       setRefFile(null)
-      setRefCsi("")
       setUploading(false)
     }).catch(() => setUploading(false))
   }
@@ -97,10 +96,9 @@ export function ProjectPage() {
   const addSubmittal = () => {
     if (!projectId || !subFile) return
     setUploading(true)
-    api.addSubmittal(projectId, subFile, subCsi).then((p) => {
+    api.addSubmittal(projectId, subFile, "").then((p) => {
       setProject(p)
       setSubFile(null)
-      setSubCsi("")
       setUploading(false)
     }).catch(() => setUploading(false))
   }
@@ -142,16 +140,25 @@ export function ProjectPage() {
     api.deleteProject(projectId).then(() => navigate("/"))
   }
 
-  const runEvaluate = (sub: Submittal) => {
-    if (!projectId || !sub.id) return
+  const openEvaluateDialog = (sub: Submittal) => {
+    setEvaluateSubmittal(sub)
+    setEvalSpecFile(null)
+    setEvalSubmittalFile(null)
+    setReportError(null)
+    setEvaluateDialogOpen(true)
+  }
+
+  const submitEvaluate = () => {
+    if (!projectId || !evaluateSubmittal?.id || !evalSpecFile || !evalSubmittalFile) return
     setReportLoading(true)
     setReportError(null)
-    setReportSubmittalName(sub.name)
+    setReportSubmittalName(evaluateSubmittal.name)
     api
-      .evaluateSubmittal(projectId, sub.id)
+      .evaluateSubmittalWithPdfs(projectId, evaluateSubmittal.id, evalSpecFile, evalSubmittalFile)
       .then(({ report, project: updated }) => {
         setProject(updated)
         setReportData(report)
+        setEvaluateDialogOpen(false)
         setReportDialogOpen(true)
       })
       .catch((e: Error) => setReportError(e.message))
@@ -280,6 +287,56 @@ export function ProjectPage() {
           </DialogContent>
         </Dialog>
 
+        <Dialog open={evaluateDialogOpen} onOpenChange={(open) => { setEvaluateDialogOpen(open); if (!open) setReportError(null) }}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Evaluate Submittal</DialogTitle>
+              <DialogDescription>
+                Upload the spec PDF and the submittal PDF to run the full pipeline and LLM audit. Evaluation may take 1–2 minutes.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4 py-4">
+              <div className="grid gap-2">
+                <Label htmlFor="eval-spec-pdf">Spec PDF</Label>
+                <Input
+                  id="eval-spec-pdf"
+                  type="file"
+                  accept=".pdf"
+                  onChange={(e) => setEvalSpecFile(e.target.files?.[0] ?? null)}
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="eval-submittal-pdf">Submittal PDF</Label>
+                <Input
+                  id="eval-submittal-pdf"
+                  type="file"
+                  accept=".pdf"
+                  onChange={(e) => setEvalSubmittalFile(e.target.files?.[0] ?? null)}
+                />
+                {evaluateSubmittal && (
+                  <p className="text-xs text-muted-foreground">
+                    Use the same file you uploaded as “{evaluateSubmittal.name}” or an updated version.
+                  </p>
+                )}
+              </div>
+              {reportError && (
+                <p className="text-sm text-destructive">{reportError}</p>
+              )}
+              <DialogFooter>
+                <Button variant="outline" onClick={() => setEvaluateDialogOpen(false)}>
+                  Cancel
+                </Button>
+                <Button
+                  onClick={submitEvaluate}
+                  disabled={!evalSpecFile || !evalSubmittalFile || reportLoading}
+                >
+                  {reportLoading ? "Evaluating… (1–2 min)" : "Run evaluation"}
+                </Button>
+              </DialogFooter>
+            </div>
+          </DialogContent>
+        </Dialog>
+
         <Tabs defaultValue="dashboard">
           <TabsList className="w-fit [&>[data-slot=tabs-trigger]]:flex-initial">
             <TabsTrigger value="dashboard">Project Dashboard</TabsTrigger>
@@ -328,20 +385,7 @@ export function ProjectPage() {
                   <h2 className="text-lg font-medium">Add a reference document</h2>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <div>
-                    <Label>CSI Division (optional)</Label>
-                    <Select value={refCsi || "_none"} onValueChange={(v) => setRefCsi(v === "_none" ? "" : v)}>
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select…" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="_none">None</SelectItem>
-                        {csiDivisions.map((d) => (
-                          <SelectItem key={d} value={d}>{d}</SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
+                  <p className="text-sm text-muted-foreground">CSI division is detected automatically from the document content when possible.</p>
                   <div>
                     <Label>File (PDF, DOCX, TXT)</Label>
                     <Input
@@ -399,8 +443,8 @@ export function ProjectPage() {
                           <Button
                             variant="default"
                             size="sm"
-                            onClick={() => sub.id && runEvaluate(sub)}
-                            disabled={reportLoading || (project.reference_docs?.length ?? 0) === 0}
+                            onClick={() => openEvaluateDialog(sub)}
+                            disabled={reportLoading}
                           >
                             <FileCheck className="mr-2 size-4" />
                             {reportLoading ? "Evaluating… (1–2 min)" : "Evaluate"}
@@ -431,20 +475,7 @@ export function ProjectPage() {
                     <h2 className="text-lg font-medium">Upload a Submittal</h2>
                   </CardHeader>
                   <CardContent className="space-y-4">
-                    <div>
-                      <Label>CSI Division (optional)</Label>
-                      <Select value={subCsi || "_none"} onValueChange={(v) => setSubCsi(v === "_none" ? "" : v)}>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select…" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="_none">None</SelectItem>
-                          {csiDivisions.map((d) => (
-                            <SelectItem key={d} value={d}>{d}</SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
+                    <p className="text-sm text-muted-foreground">CSI division is detected automatically from the document content when possible.</p>
                     <div>
                       <Label>File (PDF, DOCX)</Label>
                       <Input
@@ -479,8 +510,8 @@ export function ProjectPage() {
                           <Button
                             variant="default"
                             size="sm"
-                            onClick={() => sub.id && runEvaluate(sub)}
-                            disabled={reportLoading || (project.reference_docs?.length ?? 0) === 0}
+                            onClick={() => openEvaluateDialog(sub)}
+                            disabled={reportLoading}
                           >
                             <FileCheck className="mr-2 size-4" />
                             {reportLoading ? "Evaluating… (1–2 min)" : "Evaluate"}

@@ -6,6 +6,7 @@ from fastapi import APIRouter, HTTPException, UploadFile, File, Form, Body
 from app.pipeline import run_pipeline
 
 from app import storage, extractors, audit, document_summary
+from app.document_summary import infer_csi_division_from_text
 from app.models import Project, ReferenceDoc, Submittal, RFI
 
 router = APIRouter()
@@ -101,12 +102,13 @@ async def add_reference_doc(
     text = extractors.extract_text_from_file(file.filename or "", content)
     if text is None:
         raise HTTPException(status_code=400, detail="Could not extract text from file")
+    inferred_csi = infer_csi_division_from_text(text, file.filename or "")
     summary = document_summary.summarize_document(file.filename or "", text)
     refs = p.get("reference_docs") or []
     refs.append({
         "id": str(uuid.uuid4()),
         "name": file.filename or "Document",
-        "csi_division": csi_division or None,
+        "csi_division": inferred_csi or csi_division or None,
         "extracted_text": text,
         "summary": summary or "Document uploaded. Enable GEMINI_API_KEY for an AI-generated description.",
     })
@@ -130,12 +132,13 @@ async def add_submittal(
     text = extractors.extract_text_from_file(file.filename or "", content)
     if text is None:
         raise HTTPException(status_code=400, detail="Could not extract text from file")
+    inferred_csi = infer_csi_division_from_text(text, file.filename or "")
     summary = document_summary.summarize_document(file.filename or "", text)
     open_subs = p.get("open_submittals") or []
     open_subs.append({
         "id": str(uuid.uuid4()),
         "name": file.filename or "Submittal",
-        "csi_division": csi_division or None,
+        "csi_division": inferred_csi or csi_division or None,
         "extracted_text": text,
         "summary": summary or "Document uploaded. Enable GEMINI_API_KEY for an AI-generated description.",
     })

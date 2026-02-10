@@ -1,9 +1,67 @@
 """Use Gemini to summarize uploaded documents for display (type, purpose, key topics)."""
 import os
+import re
 from typing import Optional
+
+from app.constants import CSI_DIVS
 
 # Reasonable limit so we don't blow context; Gemini gets the gist from the start
 MAX_CHARS_FOR_SUMMARY = 30_000
+
+# Look at the first N chars for division/section hints (specs usually state this early)
+MAX_CHARS_FOR_CSI_INFER = 15_000
+
+
+def infer_csi_division_from_text(extracted_text: str, _filename: str = "") -> Optional[str]:
+    """
+    Infer a CSI division from extracted document text using heuristics.
+    Prefer matches in the first part of the document (specs/submittals often state division early).
+    Returns one of the CSI_DIVS strings, or None if no clear match.
+    """
+    text = (extracted_text or "").strip()
+    if not text:
+        return None
+    head = text[:MAX_CHARS_FOR_CSI_INFER].upper()
+
+    # Build division number -> full CSI label (e.g. "01" -> "01 - GENERAL REQUIREMENTS")
+    div_to_label: dict[str, str] = {}
+    for label in CSI_DIVS:
+        if " - " in label:
+            num = label.split(" - ", 1)[0].strip()
+            div_to_label[num] = label
+
+    # 1) "Division 01" or "DIVISION 01"
+    m = re.search(r"\bDIVISION\s*(\d{2})\b", head, re.IGNORECASE)
+    if m:
+        num = m.group(1)
+        if num in div_to_label:
+            return div_to_label[num]
+
+    # 2) "Section 09 29 00" or "Section 01 11 00" (MasterFormat) -> first two digits are division
+    m = re.search(r"\bSECTION\s*(\d{2})\s*\d{2}\s*\d{2}\b", head, re.IGNORECASE)
+    if m:
+        num = m.group(1)
+        if num in div_to_label:
+            return div_to_label[num]
+
+    # 3) Standalone "09 29 00" or "01 11 00" in heading
+    m = re.search(r"\b(\d{2})\s+\d{2}\s+\d{2}\b", head)
+    if m:
+        num = m.group(1)
+        if num in div_to_label:
+            return div_to_label[num]
+
+    # 4) Exact or prominent substring of a CSI label (e.g. "09 - FINISHES" or "GENERAL REQUIREMENTS")
+    for label in CSI_DIVS:
+        if label.upper() in head:
+            return label
+        # Label without number, e.g. "GENERAL REQUIREMENTS" for "01 - GENERAL REQUIREMENTS"
+        if " - " in label:
+            suffix = label.split(" - ", 1)[1].strip().upper()
+            if len(suffix) > 4 and suffix in head:
+                return label
+
+    return None
 
 
 def summarize_document(filename: str, extracted_text: str) -> Optional[str]:

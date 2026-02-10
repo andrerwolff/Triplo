@@ -155,6 +155,59 @@ export const api = {
       return r.json() as Promise<Project>
     })
   },
+  /** Evaluate using pipeline state (verified_requirements + filtered_submittal_data). Use when you have state from POST /api/pipeline/audit. */
+  evaluateSubmittalWithState: (
+    projectId: string,
+    submittalId: string,
+    data: { verified_requirements: unknown[]; filtered_submittal_data: unknown[]; spec_section?: string }
+  ) =>
+    request<{ report: EvaluationReport; evaluated_at: string; project: Project }>(
+      `/api/projects/${projectId}/submittals/${submittalId}/evaluate`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      }
+    ),
+
+  /** Evaluate by uploading spec PDF + submittal PDF. Runs full pipeline then LLM audit. */
+  evaluateSubmittalWithPdfs: (
+    projectId: string,
+    submittalId: string,
+    specPdf: File,
+    submittalPdf: File,
+    options?: { spec_section?: string }
+  ) => {
+    const form = new FormData()
+    form.append("spec_pdf", specPdf)
+    form.append("submittal_pdf", submittalPdf)
+    if (options?.spec_section) form.append("spec_section", options.spec_section)
+    return fetch(`${API_BASE}/api/projects/${projectId}/submittals/${submittalId}/evaluate`, {
+      method: "POST",
+      body: form,
+    })
+      .then(async (r) => {
+        if (!r.ok) {
+          const err = await r.json().catch(() => ({ detail: r.statusText }))
+          throw new Error(err.detail ?? r.statusText)
+        }
+        return r.json() as Promise<{
+          report: EvaluationReport
+          evaluated_at: string
+          project: Project
+        }>
+      })
+      .catch((err: unknown) => {
+        const msg = err instanceof Error ? err.message : String(err)
+        if (msg === "Failed to fetch" || msg.includes("NetworkError") || msg.includes("Load failed")) {
+          throw new Error(
+            `Cannot reach the backend at ${API_BASE}. Make sure it is running. Evaluate can take 1–2 minutes—please wait.`
+          )
+        }
+        throw err
+      })
+  },
+
   evaluateSubmittal: (
     projectId: string,
     submittalId: string,
