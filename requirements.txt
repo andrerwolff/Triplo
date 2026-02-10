@@ -1,2 +1,2 @@
-google-generativeai
-lorem
+# App dependencies are in backend/requirements.txt (FastAPI) and frontend (npm).
+# Install and run from backend/ and frontend/ per README.
