@@ -55,6 +55,9 @@ export type Project = {
 export type ProjectsResponse = { projects: Project[] }
 export type CSIResponse = { divisions: string[] }
 
+/** Timeout for normal API calls (list/get/update). Long-running evaluate uses proxy timeout. */
+const REQUEST_TIMEOUT_MS = 15_000
+
 async function request<T>(
   path: string,
   options: RequestInit = {}
@@ -64,10 +67,25 @@ async function request<T>(
   if (method !== "GET" && method !== "HEAD" && !headers["Content-Type"]) {
     headers["Content-Type"] = "application/json"
   }
-  const res = await fetch(`${API_BASE}${path}`, {
-    ...options,
-    headers,
-  })
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS)
+  let res: Response
+  try {
+    res = await fetch(`${API_BASE}${path}`, {
+      ...options,
+      headers,
+      signal: options.signal ?? controller.signal,
+    })
+  } catch (e) {
+    clearTimeout(timeoutId)
+    if (e instanceof Error && e.name === "AbortError") {
+      throw new Error(
+        `Request timed out. Is the backend running at ${API_BASE || "localhost:8000"}? Start it with: cd backend && python3 -m uvicorn app.main:app --reload --port 8000`
+      )
+    }
+    throw e
+  }
+  clearTimeout(timeoutId)
   if (!res.ok) {
     const err = await res.json().catch(() => ({ detail: res.statusText }))
     throw new Error(err.detail ?? res.statusText)

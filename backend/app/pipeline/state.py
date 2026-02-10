@@ -5,7 +5,7 @@ SubmittalState is the single source of truth carried through the assembly line.
 """
 
 from enum import Enum
-from typing import Optional
+from typing import Literal, Optional
 
 from pydantic import BaseModel, Field
 
@@ -52,6 +52,14 @@ class SubmittalDataPoint(BaseModel):
     human_review_required: bool = Field(
         default=False,
         description="True when confidence < 0.8 (human-in-the-loop)",
+    )
+    source_reliability: Literal["HIGH_VISUAL", "MEDIUM_TEXT"] = Field(
+        default="MEDIUM_TEXT",
+        description="HIGH_VISUAL when from visual highlight; MEDIUM_TEXT when text-only",
+    )
+    requires_confirmation: bool = Field(
+        default=False,
+        description="True when page has no visual selection (catalog noise possible)",
     )
 
 
@@ -111,6 +119,10 @@ class SubmittalState(BaseModel):
         default_factory=list,
         description="Extracted data points from contractor PDF (with page numbers)",
     )
+    submittal_data_filtered: list[SubmittalDataPoint] = Field(
+        default_factory=list,
+        description="Precedence-filtered list passed to the Technical Submittal Auditor",
+    )
     submittal_toc: list[SubmittalTOCEntry] = Field(
         default_factory=list,
         description="Table of Contents extracted from submittal (for triage)",
@@ -148,7 +160,7 @@ class SubmittalState(BaseModel):
         description="Extraction keys flagged for human-in-the-loop (confidence < 0.8)",
     )
 
-    # Visual extraction (optional): when provided, filter_data_points is applied to submittal_data
+    # Visual extraction (optional): when provided, precedence engine uses it for submittal_data_filtered
     visual_selection_result: Optional[dict] = Field(
         default=None,
         description="Output of run_visual_extraction (final_selection, etc.) when available",

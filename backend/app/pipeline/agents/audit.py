@@ -9,10 +9,16 @@ from app.pipeline.state import SubmittalState, Variance, SpecRequirement, Submit
 from app.pipeline.units import values_equivalent
 
 
-def _find_submittal_value(state: SubmittalState, spec_key: str) -> tuple[str, bool]:
+def _find_submittal_value(
+    state: SubmittalState,
+    spec_key: str,
+    data_points: list[SubmittalDataPoint] | None = None,
+) -> tuple[str, bool]:
     """Return (submittal_value, found). found=False means 'Not Provided'."""
+    if data_points is None:
+        data_points = state.submittal_data_filtered if state.submittal_data_filtered else state.submittal_data
     key_lower = spec_key.lower().strip()
-    for dp in state.submittal_data:
+    for dp in data_points:
         if dp.key.lower().strip() == key_lower:
             return (dp.value.strip(), True)
     return ("Not Provided", False)
@@ -22,13 +28,15 @@ def audit_agent(state: SubmittalState) -> SubmittalState:
     """
     Compare each spec requirement to the corresponding submittal data point.
 
-    - Uses unit normalization (time, length) for equivalence.
-    - Records variances where values differ or are missing.
+    Uses the precedence-filtered list (submittal_data_filtered) when present,
+    otherwise submittal_data. Uses unit normalization (time, length) for equivalence.
+    Records variances where values differ or are missing.
     """
+    data_to_use = state.submittal_data_filtered if state.submittal_data_filtered else state.submittal_data
     variances: list[Variance] = []
 
     for spec in state.spec_requirements:
-        sub_val, found = _find_submittal_value(state, spec.key)
+        sub_val, found = _find_submittal_value(state, spec.key, data_points=data_to_use)
         if not found:
             variances.append(
                 Variance(

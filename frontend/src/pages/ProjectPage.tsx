@@ -32,6 +32,7 @@ export function ProjectPage() {
   const [projects, setProjects] = useState<Project[]>([])
   const [csiDivisions, setCsiDivisions] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState<string | null>(null)
   const [rfiOpen, setRfiOpen] = useState(false)
   const [rfiTitle, setRfiTitle] = useState("")
   const [rfiDesc, setRfiDesc] = useState("")
@@ -61,10 +62,14 @@ export function ProjectPage() {
   useEffect(() => {
     if (!projectId) return
     setLoading(true)
+    setLoadError(null)
     api.getProject(projectId).then((p) => {
       setProject(p)
       setLoading(false)
-    }).catch(() => setLoading(false))
+    }).catch((err: unknown) => {
+      setLoading(false)
+      setLoadError(err instanceof Error ? err.message : "Failed to load project")
+    })
   }, [projectId])
 
   const addRfi = () => {
@@ -153,7 +158,41 @@ export function ProjectPage() {
       .finally(() => setReportLoading(false))
   }
 
-  if (loading || !project) {
+  const reloadProject = () => {
+    if (!projectId) return
+    setLoading(true)
+    setLoadError(null)
+    api.getProject(projectId).then((p) => {
+      setProject(p)
+      setLoading(false)
+    }).catch((err: unknown) => {
+      setLoading(false)
+      setLoadError(err instanceof Error ? err.message : "Failed to load project")
+    })
+  }
+
+  if (loading && !project && !loadError) {
+    return (
+      <AppLayout projects={projects}>
+        <div className="flex flex-1 items-center justify-center p-6">
+          <p className="text-muted-foreground">Loading…</p>
+        </div>
+      </AppLayout>
+    )
+  }
+
+  if (loadError && !project) {
+    return (
+      <AppLayout projects={projects}>
+        <div className="flex flex-1 flex-col items-center justify-center gap-4 p-6">
+          <p className="text-sm text-destructive font-medium">{loadError}</p>
+          <Button variant="outline" onClick={reloadProject}>Retry</Button>
+        </div>
+      </AppLayout>
+    )
+  }
+
+  if (!project) {
     return (
       <AppLayout projects={projects}>
         <div className="flex flex-1 items-center justify-center p-6">

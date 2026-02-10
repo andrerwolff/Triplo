@@ -20,7 +20,11 @@ async def lifespan(app: FastAPI):
 
 
 # CORS: dev origins + production frontend URL from env (e.g. https://your-app.vercel.app)
-_cors_origins = ["http://localhost:5173", "http://127.0.0.1:5173"]
+_cors_origins = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://triplosbmtl.vercel.app",  # production frontend
+]
 if os.getenv("CORS_ORIGINS"):
     _cors_origins.extend(o.strip() for o in os.getenv("CORS_ORIGINS", "").split(",") if o.strip())
 

@@ -19,6 +19,7 @@ import { ArrowRight } from "lucide-react"
 export function DashboardPage() {
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadError, setLoadError] = useState<string | null>(null)
   const [dialogOpen, setDialogOpen] = useState(false)
   const [newName, setNewName] = useState("")
   const [createError, setCreateError] = useState<string | null>(null)
@@ -26,10 +27,14 @@ export function DashboardPage() {
   const navigate = useNavigate()
 
   const load = () => {
+    setLoadError(null)
     api.getProjects().then((r) => {
       setProjects(r.projects)
       setLoading(false)
-    }).catch(() => setLoading(false))
+    }).catch((err: unknown) => {
+      setLoading(false)
+      setLoadError(err instanceof Error ? err.message : "Failed to load projects")
+    })
   }
 
   useEffect(() => {
@@ -103,6 +108,11 @@ export function DashboardPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {loading ? (
             <p className="text-muted-foreground col-span-full">Loading…</p>
+          ) : loadError ? (
+            <div className="col-span-full rounded-lg border border-destructive/50 bg-destructive/10 p-4">
+              <p className="text-sm text-destructive font-medium">{loadError}</p>
+              <Button variant="outline" size="sm" className="mt-2" onClick={() => load()}>Retry</Button>
+            </div>
           ) : projects.length === 0 ? (
             <p className="text-muted-foreground col-span-full">No projects yet. Create one with the button above.</p>
           ) : (

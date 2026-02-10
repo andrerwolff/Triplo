@@ -3,6 +3,7 @@ from datetime import datetime
 from typing import Optional
 
 from fastapi import APIRouter, HTTPException, UploadFile, File, Form, Body
+from app.pipeline import run_pipeline
 
 from app import storage, extractors, audit, document_summary
 from app.models import Project, ReferenceDoc, Submittal, RFI
@@ -149,11 +150,18 @@ def options_evaluate(project_id: str, submittal_id: str):
 
 
 @router.post("/{project_id}/submittals/{submittal_id}/evaluate")
-def evaluate_submittal(
+async def evaluate_submittal(
     project_id: str,
     submittal_id: str,
     body: Optional[dict] = Body(None),
+    spec_pdf: Optional[UploadFile] = File(None),
+    submittal_pdf: Optional[UploadFile] = File(None),
 ):
+    """
+    Evaluate a submittal against specs. Provide either:
+    - spec_pdf + submittal_pdf: run full pipeline (extraction, triage, compliance gate, audit) and LLM auditor.
+    - Body with verified_requirements and filtered_submittal_data: run LLM auditor only (e.g. from pipeline state).
+    """
     p = storage.get_project_by_id(project_id)
     if not p:
         raise HTTPException(status_code=404, detail="Project not found")
@@ -174,27 +182,59 @@ def evaluate_submittal(
     if not sub:
         raise HTTPException(status_code=404, detail="Submittal not found")
 
-    ref_docs = p.get("reference_docs") or []
-    ref_doc_ids = (body or {}).get("reference_doc_ids")
-    if ref_doc_ids is not None:
-        ref_docs = [r for r in ref_docs if r.get("id") in ref_doc_ids]
-    if not ref_docs:
-        raise HTTPException(
-            status_code=400,
-            detail="No reference documents to evaluate against. Add reference docs (specs) to the project first.",
-        )
-
-    spec_blocks = [(r.get("name") or "Document", (r.get("extracted_text") or "")) for r in ref_docs]
     submittal_name = sub.get("name") or "Submittal"
-    submittal_text = sub.get("extracted_text") or ""
     spec_section = (body or {}).get("spec_section") if body else None
+    report = None
 
-    try:
-        report = audit.run_audit(spec_blocks, submittal_name, submittal_text, spec_section)
-    except ValueError as e:
-        raise HTTPException(status_code=503, detail=str(e))
-    except RuntimeError as e:
-        raise HTTPException(status_code=502, detail=str(e))
+    if spec_pdf and submittal_pdf and spec_pdf.filename and submittal_pdf.filename:
+        spec_bytes = await spec_pdf.read()
+        sub_bytes = await submittal_pdf.read()
+        if not spec_bytes or not sub_bytes:
+            raise HTTPException(status_code=400, detail="Spec and submittal PDFs must not be empty")
+        try:
+            state = run_pipeline(spec_bytes, sub_bytes)
+        except ValueError as e:
+            raise HTTPException(status_code=503, detail=str(e))
+        except RuntimeError as e:
+            raise HTTPException(status_code=502, detail=str(e))
+        if state.suggested_action_override == "REVISE_AND_RESUBMIT":
+            report = {
+                "summary_table": [],
+                "compliance_narrative": "Division 01 administrative requirements not met (e.g. Cover sheet, LEED, Buy American). Revise and resubmit.",
+                "missing_information": [],
+                "critical_deviations": [],
+                "detailed_discrepancies": [],
+                "suggested_action": "REVISE_AND_RESUBMIT",
+            }
+        else:
+            verified = [r.model_dump() for r in state.spec_requirements]
+            filtered = [d.model_dump() for d in state.submittal_data]
+            report = audit.run_audit(
+                verified,
+                filtered,
+                submittal_name=submittal_name,
+                spec_section=spec_section,
+            )
+    else:
+        b = body or {}
+        verified_requirements = b.get("verified_requirements")
+        filtered_submittal_data = b.get("filtered_submittal_data")
+        if not isinstance(verified_requirements, list) or not isinstance(filtered_submittal_data, list):
+            raise HTTPException(
+                status_code=400,
+                detail="Provide either spec_pdf and submittal_pdf files, or request body with verified_requirements and filtered_submittal_data (e.g. from POST /api/pipeline/audit state).",
+            )
+        try:
+            report = audit.run_audit(
+                verified_requirements,
+                filtered_submittal_data,
+                submittal_name=submittal_name,
+                spec_section=spec_section,
+            )
+        except ValueError as e:
+            raise HTTPException(status_code=503, detail=str(e))
+        except RuntimeError as e:
+            raise HTTPException(status_code=502, detail=str(e))
 
     evaluated_at = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
     sub_copy = dict(sub)
